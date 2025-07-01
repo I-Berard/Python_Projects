@@ -50,7 +50,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("A simple ricochet game")
 clock = pygame.time.Clock()
 
-ball = Particle(mass=1.0, position=(WIDTH / 2, 0), velocity=(300, 0))
+ball = Particle(mass=1.0, position=(WIDTH / 2, 0), velocity=(400, 0))
 slide = Slider(width=100, acceleration=0.6, position=WIDTH // 2 - 50)
 
 running = True

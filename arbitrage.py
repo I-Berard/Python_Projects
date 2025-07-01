@@ -31,7 +31,7 @@ def cmc(starting_rank, number_of_tokens):
     }
     headers = {
        'Accepts': 'application/json',
-       'X-CMC_PRO_API_KEY': '',
+       'X-CMC_PRO_API_KEY': '5fd80b86-e0d2-42b4-9afc-1653c232f672',
     }
     session = Session()
     session.headers.update(headers)
