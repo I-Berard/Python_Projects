@@ -21,7 +21,7 @@ def sigmoid(z):
 def calc_loss(y_pred, y_true):
     m = len(y_true)
     y_pred = np.clip(y_pred, 1e-10, 1 - 1e-10)
-    return (-1/m) * np.sum(y_true * np.log(y_true) + (1 - y_pred) * np.log(1 - y_pred))
+    return (-1/m) * np.sum(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
 
 def predict(X, w, b):
     z = np.dot(X, w) + b
@@ -29,7 +29,9 @@ def predict(X, w, b):
 
 m = len(y)
 
-for i in range(1000):
+iterations = 2000
+
+for i in range(iterations):
     pred = predict(X, w, b)
 
     error = calc_loss(pred, y)
@@ -41,7 +43,37 @@ for i in range(1000):
     w -= learning_rate * dw
 
     error_log.append(error)
+    # if(i % 10 == 0):
+        # print(error_log[i])
+
+
 
 print("Final weights:", w)
 print("Final bias:", b)
+
+# plt.figure(figsize=(8, 5))
+# plt.plot(range(iterations), error_log, color='red')
+# plt.xlabel("Iterations")
+# plt.ylabel("Error")
+# plt.title("Error over iterations")
+# plt.grid(True)
+# plt.show()
+
+input = np.array([
+    [3.0, 2.5],
+    [1.0, 0.5]
+])
+
+output = predict(input, w, b)
+output = output.reshape(-1,1)
+print(output)
+
+for i in range(len(output)):
+    if output[i][0] < 0.5:
+        print(f"Student {i + 1} failed the exam")
+    elif output[i][0] >= 0.5:
+        print(f"Student {i + 1} passed the exam")
+    else:
+        print("There has been a problem")
+
 
